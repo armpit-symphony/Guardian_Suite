@@ -1,0 +1,69 @@
+# Guardian Suite Configuration
+
+# Token Guardian
+token_guardian:
+  enabled: true
+  shadow_mode: true  # Test routing before switching
+  max_cost_per_hour: 10.0
+  
+  # Model costs (per 1K tokens)
+  models:
+    gpt-4:
+      provider: openai
+      input: 0.03
+      output: 0.06
+    gpt-4-turbo:
+      provider: openai
+      input: 0.01
+      output: 0.03
+    gpt-3.5-turbo:
+      provider: openai
+      input: 0.001
+      output: 0.002
+    claude-3-opus:
+      provider: anthropic
+      input: 0.015
+      output: 0.075
+    claude-3-sonnet:
+      provider: anthropic
+      input: 0.003
+      output: 0.015
+
+# Memory Guardian
+memory_guardian:
+  enabled: true
+  max_context_tokens: 100000
+  redact_pii: true
+  preserve_context: true
+
+# Executive Guardian
+executive_guardian:
+  enabled: true
+  require_approval: true
+  
+  # High-risk tools that require approval
+  high_risk_tools:
+    - send_email
+    - execute_shell
+    - write_file
+    - delete_file
+    - execute_code
+    - send_message
+    - post_to_social
+    - make_payment
+    - access_credentials
+    - modify_config
+    
+  journal_path: data/guardian/executive/decisions/
+
+# Task Guardian
+task_guardian:
+  enabled: true
+  max_concurrent: 5
+  default_interval: 300  # 5 minutes
+
+# Vault
+vault:
+  enabled: true
+  key_env: SPARKBOT_VAULT_KEY
+  db_path: data/guardian/vault.db

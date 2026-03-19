@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "guardian-suite"
+version = "1.0.0"
+description = "Unified security, monitoring, and governance layer for AI agents"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "SparkPit Labs", email = "contact@sparkpitlabs.com"}
+]
+keywords = ["ai", "agents", "security", "monitoring", "governance", "openclaw", "hermes"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "cryptography>=41.0.0",
+]
+
+[project.optional-dependencies]
+openclaw = []
+hermes = []
+all = ["guardian-suite[openclaw,hermes]"]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/armpit-symphony/Guardian_Suite"
+Documentation = "https://docs.guadiansuite.io"
+Issues = "https://github.com/armpit-symphony/Guardian_Suite/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["guardian*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

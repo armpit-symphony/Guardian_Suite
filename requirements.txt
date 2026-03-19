@@ -1,0 +1,11 @@
+# Guardian Suite
+
+cryptography>=41.0.0
+
+# Optional
+# openclaw>=1.0.0
+# hermes>=1.0.0
+
+# Dev
+pytest>=7.0
+pytest-asyncio>=0.21
